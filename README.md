@@ -71,7 +71,7 @@ Run the CLI:
 
 ## SharedCode Cores dependency
 
-Smart Filter 1.0.31 pins the public `SharedCode-Cores` release `v1.0.0` in `requirements.txt`. A sibling SharedCode folder is not required. Maintainers may still use an editable source checkout through `SMARTFILTER_SHAREDCODE_DIR` when developing both projects together.
+Smart Filter 1.0.32 pins the public `SharedCode-Cores` release `v1.0.0` in `requirements.txt`. A sibling SharedCode folder is not required. Maintainers may still use an editable source checkout through `SMARTFILTER_SHAREDCODE_DIR` when developing both projects together.
 
 Repository: https://github.com/mariofaleroti/SharedCode-Cores
 
@@ -86,7 +86,7 @@ BUILD_WINDOWS_RELEASE.cmd
 The build runs the validation suite, packages GUI and CLI executables with PyInstaller, executes the portable self-check, and produces:
 
 ```text
-SmartFilter_Portable_v1.0.31.zip
+SmartFilter_Portable_v1.0.32.zip
 ```
 
 ## Architecture
@@ -95,7 +95,7 @@ SharedCode Cores supplies reusable infrastructure such as GUI foundations, files
 
 ## Limitations
 
-- OCR is not included in version 1.0.31.
+- OCR is not included in version 1.0.32.
 - Image-only PDFs and JPG/PNG files cannot be searched by content.
 - Protected, damaged, locked, or inaccessible files may be reported as incidents.
 - Full-disk searches may take several minutes depending on storage and file count.

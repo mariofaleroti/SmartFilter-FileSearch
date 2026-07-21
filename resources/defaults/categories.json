@@ -5,7 +5,7 @@
     "config_type": "category_database",
     "tool_name": "Smart Filter",
     "module_name": "CategoryService",
-    "tool_version": "1.0.31",
+    "tool_version": "1.0.32",
     "updated_at_utc": "2026-07-21T15:37:54Z"
   },
   "summary": {

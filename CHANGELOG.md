@@ -1,12 +1,16 @@
 # Historial de cambios
 
+## [1.0.32] - 2026-07-21
 
+### Corrección pública reproducible
 
-## 1.0.31 public repository fix 2
-
-- Anchored generated-directory rules in `.gitignore` to the repository root.
-- Restored the source package `smart_filter/output`, which was accidentally ignored as generated output.
-- Strengthened public validation so required output-contract modules cannot disappear from a clean clone.
+- Restaurado y versionado el paquete fuente `smart_filter/output`, necesario para contratos, snapshots y reportes de release.
+- Las reglas de `.gitignore` para `data`, `output`, `runtime`, builds y releases quedan ancladas únicamente a la raíz del repositorio.
+- El validador público ignora entornos virtuales y artefactos generados, pero continúa bloqueando rutas personales dentro del código publicable.
+- La validación de rendimiento se adapta a los núcleos y límites reales del equipo en vez de exigir una cantidad fija de procesos y lectores.
+- El instalador de desarrollo para Windows mejora la detección de Python y los mensajes de error en equipos limpios.
+- Validado desde un clon público independiente: instalación automática de SharedCode Cores 1.0.0 y suite completa de 27 validadores.
+- Sin cambios funcionales en el motor de búsqueda ni en la interfaz estable de 1.0.31.
 
 ## [1.0.31] - 2026-07-21
 

@@ -5,7 +5,7 @@ import re
 APP_ID = "smart_filter"
 APP_NAME = "Smart Filter"
 APP_DISPLAY_NAME = "Smart Filter Archivos"
-APP_VERSION = "1.0.31"
+APP_VERSION = "1.0.32"
 APP_TAGLINE = "Filtrado inteligente de archivos"
 APP_DESCRIPTION = (
     "Smart Filter busca y filtra archivos por nombre y contenido mediante palabras, categorías inteligentes, "

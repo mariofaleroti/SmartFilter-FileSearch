@@ -9,10 +9,10 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main() -> int:
-    assert get_release_status("1.0.31-rc3") == "release_candidate"
-    assert get_release_status("1.0.31") == "stable"
-    assert get_release_label("1.0.31") == "Versión estable"
-    assert APP_VERSION == "1.0.31"
+    assert get_release_status("1.0.32-rc1") == "release_candidate"
+    assert get_release_status("1.0.32") == "stable"
+    assert get_release_label("1.0.32") == "Versión estable"
+    assert APP_VERSION == "1.0.32"
     assert APP_RELEASE_STATUS == "stable"
 
     requirements = (ROOT / "requirements.txt").read_text(encoding="utf-8")

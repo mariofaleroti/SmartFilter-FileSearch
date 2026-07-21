@@ -1,6 +1,6 @@
 # Semántica del resumen final de búsqueda
 
-Smart Filter 1.0.31 presenta seis tarjetas al finalizar una búsqueda. Cada una responde a una pregunta distinta y usa un contador concreto.
+Smart Filter 1.0.32 presenta seis tarjetas al finalizar una búsqueda. Cada una responde a una pregunta distinta y usa un contador concreto.
 
 | Tarjeta | Fuente | Significado |
 |---|---|---|

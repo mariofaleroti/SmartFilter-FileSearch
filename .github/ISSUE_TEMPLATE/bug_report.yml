@@ -14,7 +14,7 @@ body:
     id: version
     attributes:
       label: Smart Filter version
-      placeholder: 1.0.31
+      placeholder: 1.0.32
     validations:
       required: true
   - type: dropdown

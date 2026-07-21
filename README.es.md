@@ -69,7 +69,7 @@ BUILD_WINDOWS_RELEASE.cmd
 El resultado esperado es:
 
 ```text
-SmartFilter_Portable_v1.0.31.zip
+SmartFilter_Portable_v1.0.32.zip
 ```
 
 ## Arquitectura
@@ -80,7 +80,7 @@ Repositorio de SharedCode Cores: https://github.com/mariofaleroti/SharedCode-Cor
 
 ## Limitaciones
 
-- No incluye OCR en la versión 1.0.31.
+- No incluye OCR en la versión 1.0.32.
 - Los PDF sin capa de texto y las imágenes no pueden analizarse por contenido.
 - Los archivos bloqueados, protegidos o dañados pueden aparecer como incidencias.
 - Una búsqueda sobre un disco completo puede requerir varios minutos.

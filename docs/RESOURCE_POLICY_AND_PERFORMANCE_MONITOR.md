@@ -1,6 +1,6 @@
 # Política de recursos y monitor de rendimiento
 
-Smart Filter 1.0.31 adapta el trabajo al equipo detectado y registra telemetría del proceso principal y de los procesos analizadores.
+Smart Filter 1.0.32 adapta el trabajo al equipo detectado y registra telemetría del proceso principal y de los procesos analizadores.
 
 ## Objetivo
 
