@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyd
+.venv/
+venv/
+
+# User state and generated content
+data/
+runtime/
+output/
+logs/
+temp/
+tmp/
+
+# Build and release artifacts
+build/
+dist/
+release/
+SmartFilter_Portable_v*.zip
+*.spec.bak
+
+# Test and tooling caches
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Editors and operating systems
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Generated reports
+smartfilter_results.json
+*.log

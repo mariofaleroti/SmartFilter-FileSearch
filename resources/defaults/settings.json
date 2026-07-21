@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "schema_version": "1.0.0",
+    "file_type": "config",
+    "config_type": "smartfilter_settings",
+    "tool_name": "Smart Filter",
+    "module_name": "SettingsService",
+    "tool_version": "1.0.31",
+    "updated_at_utc": "2026-07-21T15:37:54Z"
+  },
+  "summary": {
+    "status": "active",
+    "total_settings": 62,
+    "sections_count": 9,
+    "search_history_count": 0,
+    "saved_discard_terms_count": 0,
+    "diagnostics_count": 0,
+    "errors_count": 0
+  },
+  "report_brief": {
+    "title": "Configuración de Smart Filter",
+    "description": "Preferencias de Smart Filter persistidas con contrato estándar y separadas de la plantilla de fábrica."
+  },
+  "data": {
+    "visual": {
+      "appearance_mode": "dark",
+      "appearance_label": "Oscuro",
+      "color_theme": "blue",
+      "accent_color": "blue",
+      "color_theme_label": "Azul",
+      "accent_color_label": "Azul",
+      "surface_theme": "onyx",
+      "surface_theme_label": "Ónix",
+      "font_family": "Segoe UI",
+      "font_size": "Normal",
+      "table_density": "Normal",
+      "table_row_height": 24,
+      "custom_accent_enabled": false,
+      "custom_accent_hex": "#1f6aa5",
+      "custom_surface_enabled": false,
+      "custom_surface_hex": "#1b2430"
+    },
+    "metrics": {
+      "show_before_search": false,
+      "size": "Compacto",
+      "style": "Estado"
+    },
+    "search": {
+      "default_analysis_mode": "Carpeta",
+      "default_file_type": "Todos los archivos",
+      "default_file_types": [
+        "Todos los archivos"
+      ],
+      "default_search_scope": "Nombre y contenido",
+      "default_category": "Ninguna",
+      "max_content_file_size": "Sin límite",
+      "supported_file_types": [
+        "Excel (.xlsx)",
+        "PDF (.pdf)",
+        "Word (.docx)",
+        "CSV (.csv)",
+        "Texto (.txt/.log/.md)",
+        "Datos (.json/.xml)",
+        "HTML (.html/.htm)",
+        "Todos los archivos"
+      ],
+      "supported_extensions": [
+        ".xlsx",
+        ".pdf",
+        ".docx",
+        ".csv",
+        ".txt",
+        ".log",
+        ".md",
+        ".json",
+        ".xml",
+        ".html",
+        ".htm"
+      ]
+    },
+    "performance": {
+      "processing_mode": "Automático",
+      "resource_profile": "Equilibrado",
+      "manual_analysis_processes": 2,
+      "manual_reader_workers": 4,
+      "manual_reserved_cores": 2,
+      "manual_max_pending_batches": 4,
+      "performance_monitor_enabled": true,
+      "performance_timeline_enabled": true,
+      "performance_sample_interval_seconds": 1.0,
+      "performance_timeline_interval_seconds": 10.0
+    },
+    "output": {
+      "auto_open_output_folder": true,
+      "output_folder_prefix": "SmartFilter_Resultados",
+      "create_csv_report_on_save": true,
+      "preserve_folder_structure_on_save": false
+    },
+    "highlight": {
+      "highlight_search_terms_on_open": true,
+      "highlight_cell_color": "Amarillo",
+      "highlight_text_color": "Rojo",
+      "open_result_mode": "Abrir vista destacada HTML"
+    },
+    "experience": {
+      "remember_last_use": true,
+      "save_search_history": false,
+      "remember_last_analysis_mode": true,
+      "remember_last_location": false,
+      "remember_last_search_settings": false
+    },
+    "state": {
+      "last_analysis_mode": "Carpeta",
+      "last_folder": "",
+      "last_file": "",
+      "last_search_text": "",
+      "last_context_filter": "",
+      "last_category": "Ninguna",
+      "last_discard_filter": "Ninguna",
+      "last_file_type": "Todos los archivos",
+      "last_file_types": [
+        "Todos los archivos"
+      ],
+      "last_search_scope": "Nombre y contenido"
+    },
+    "filters": {
+      "ignored_folder_keywords": "",
+      "ignored_file_keywords": "",
+      "ignored_folder_paths": [],
+      "ignored_file_paths": [],
+      "saved_discard_terms": [],
+      "broad_scan_safe_enabled": true,
+      "broad_scan_exclude_system": true,
+      "broad_scan_exclude_temp_cache": true,
+      "broad_scan_exclude_dev_dependencies": true,
+      "broad_scan_exclude_build_outputs": true,
+      "broad_scan_exclude_smartfilter_results": true,
+      "broad_scan_exclude_installed_apps": false,
+      "broad_scan_exclude_shared_system_data": false
+    },
+    "history": {
+      "search_history": []
+    },
+    "runtime": {
+      "created_at_utc": "2026-07-21T15:37:54Z",
+      "updated_at_utc": "2026-07-21T15:37:54Z",
+      "updated_at_local": "2026-07-21T15:37:54+00:00",
+      "source": "Smart Filter factory defaults"
+    }
+  },
+  "diagnostics": [],
+  "errors": []
+}
