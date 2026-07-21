@@ -104,24 +104,28 @@ def _validate_pipeline_and_contract() -> dict[str, object]:
     original_batch_items = scan_pipeline.PROCESS_BATCH_MAX_ITEMS
     original_batch_chars = scan_pipeline.PROCESS_BATCH_MAX_CONTENT_CHARS
     previous_mode = os.environ.get("SMARTFILTER_CPU_ANALYSIS")
+    settings = {
+        "processing_mode": PROCESSING_MODE_MANUAL,
+        "resource_profile": RESOURCE_PROFILE_BALANCED,
+        "manual_analysis_processes": 2,
+        "manual_reader_workers": 4,
+        "manual_reserved_cores": 2,
+        "manual_max_pending_batches": 4,
+        "performance_monitor_enabled": True,
+        "performance_timeline_enabled": True,
+        "performance_sample_interval_seconds": 0.5,
+        "performance_timeline_interval_seconds": 5.0,
+        "ignored_folder_keywords": "",
+        "ignored_file_keywords": "",
+        "ignored_folder_paths": [],
+        "ignored_file_paths": [],
+        "broad_scan_safe_enabled": True,
+    }
+    # Manual values are upper bounds. On small VMs the production policy must
+    # reduce them to the detected CPU topology instead of oversubscribing it.
+    expected_policy = resolve_resource_policy(settings)
     try:
-        scan_pipeline.get_settings = lambda: {
-            "processing_mode": PROCESSING_MODE_MANUAL,
-            "resource_profile": RESOURCE_PROFILE_BALANCED,
-            "manual_analysis_processes": 2,
-            "manual_reader_workers": 4,
-            "manual_reserved_cores": 2,
-            "manual_max_pending_batches": 4,
-            "performance_monitor_enabled": True,
-            "performance_timeline_enabled": True,
-            "performance_sample_interval_seconds": 0.5,
-            "performance_timeline_interval_seconds": 5.0,
-            "ignored_folder_keywords": "",
-            "ignored_file_keywords": "",
-            "ignored_folder_paths": [],
-            "ignored_file_paths": [],
-            "broad_scan_safe_enabled": True,
-        }
+        scan_pipeline.get_settings = lambda: dict(settings)
         # Generate many small batches so the producer must obey backpressure.
         scan_pipeline.PROCESS_BATCH_MAX_ITEMS = 2
         scan_pipeline.PROCESS_BATCH_MAX_CONTENT_CHARS = 128 * 1024
@@ -144,16 +148,19 @@ def _validate_pipeline_and_contract() -> dict[str, object]:
             runtime = dict(performance.get("runtime") or {})
 
             assert stats["analysis_backend"] == "spawn_process_pool"
-            assert stats["analysis_processes_count"] == 2
-            assert stats["reader_workers_count"] == 4
-            assert pipeline["max_pending_batches"] == 4
-            assert pipeline["peak_pending_batches"] <= 4
+            assert stats["analysis_processes_count"] == expected_policy.analysis_processes
+            assert stats["reader_workers_count"] == expected_policy.reader_workers
+            assert pipeline["max_pending_batches"] == expected_policy.max_pending_batches
+            assert pipeline["peak_pending_batches"] <= expected_policy.max_pending_batches
             assert pipeline["pending_limit_respected"] is True
             assert stats["analysis_batches_submitted_count"] > 4
             assert stats["analysis_batches_completed_count"] == stats["analysis_batches_submitted_count"]
             assert stats["analysis_batches_failed_count"] == 0
             assert policy["manual_override"] is True
-            assert policy["active_analysis_processes"] == 2
+            assert policy["active_analysis_processes"] == expected_policy.analysis_processes
+            assert policy["active_reader_workers"] == expected_policy.reader_workers
+            assert policy["physical_cores"] == expected_policy.physical_cores
+            assert policy["logical_cores"] == expected_policy.logical_cores
             assert runtime["backend"] == "psutil_process_tree"
             assert runtime["samples_count"] >= 1
             assert "cpu" in runtime and "memory" in runtime and "phases" in runtime
@@ -175,7 +182,10 @@ def _validate_pipeline_and_contract() -> dict[str, object]:
                 runtime=runtime_context,
                 cli_options={"validator": True},
             )
-            assert contract["data"]["performance"]["pipeline"]["max_pending_batches"] == 4
+            assert (
+                contract["data"]["performance"]["pipeline"]["max_pending_batches"]
+                == expected_policy.max_pending_batches
+            )
             assert contract["summary"]["resource_profile"] == RESOURCE_PROFILE_BALANCED
             json.dumps(contract, ensure_ascii=False)
 
@@ -184,6 +194,8 @@ def _validate_pipeline_and_contract() -> dict[str, object]:
                 "readers": stats["reader_workers_count"],
                 "peak_pending": pipeline["peak_pending_batches"],
                 "pending_limit": pipeline["max_pending_batches"],
+                "physical_cores": expected_policy.physical_cores,
+                "logical_cores": expected_policy.logical_cores,
                 "samples": runtime["samples_count"],
                 "cpu_peak_cores": runtime["cpu"]["smartfilter_peak_cores"],
                 "children_average_cores": runtime["cpu"]["children_average_cores"],
