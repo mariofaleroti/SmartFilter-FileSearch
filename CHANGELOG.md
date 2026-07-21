@@ -1,6 +1,13 @@
 # Historial de cambios
 
 
+
+## 1.0.31 public repository fix 2
+
+- Anchored generated-directory rules in `.gitignore` to the repository root.
+- Restored the source package `smart_filter/output`, which was accidentally ignored as generated output.
+- Strengthened public validation so required output-contract modules cannot disappear from a clean clone.
+
 ## [1.0.31] - 2026-07-21
 
 ### Versión estable

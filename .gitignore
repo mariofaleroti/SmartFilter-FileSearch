@@ -7,17 +7,17 @@ __pycache__/
 venv/
 
 # User state and generated content
-data/
-runtime/
-output/
-logs/
-temp/
-tmp/
+/data/
+/runtime/
+/output/
+/logs/
+/temp/
+/tmp/
 
 # Build and release artifacts
-build/
-dist/
-release/
+/build/
+/dist/
+/release/
 SmartFilter_Portable_v*.zip
 *.spec.bak
 

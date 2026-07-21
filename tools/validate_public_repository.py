@@ -25,7 +25,7 @@ def main() -> int:
         unexpected = {item.name for item in data_dir.iterdir()} - allowed
         assert not unexpected, f"Contenido inesperado en data/: {sorted(unexpected)}"
     gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8")
-    for entry in ("data/", "runtime/", "output/", "build/", "dist/", "release/", ".venv/"):
+    for entry in ("/data/", "/runtime/", "/output/", "/build/", "/dist/", "/release/", ".venv/"):
         assert entry in gitignore, entry
 
     required = (
@@ -41,27 +41,33 @@ def main() -> int:
         ".github/ISSUE_TEMPLATE/bug_report.yml",
         ".github/ISSUE_TEMPLATE/feature_request.yml",
         ".github/pull_request_template.md",
+        "smart_filter/output/__init__.py",
+        "smart_filter/output/release_report.py",
+        "smart_filter/output/result_contract.py",
+        "smart_filter/output/tool_manifest.py",
     )
     for relative in required:
         assert (ROOT / relative).is_file(), relative
 
     forbidden_fragments = ("C:\\Users\\", "Nanhok")
     text_suffixes = {".py", ".md", ".txt", ".json", ".toml", ".ps1", ".cmd", ".sh", ".spec", ".yml", ".yaml"}
-    generated_directories = {
-        ".git",
-        ".venv",
-        "venv",
-        "env",
-        "__pycache__",
-        "build",
-        "dist",
-        "release",
+    root_generated_directories = {
+        "data",
         "runtime",
         "output",
         "logs",
         "temp",
         "tmp",
-        "data",
+        "build",
+        "dist",
+        "release",
+    }
+    generated_directories_anywhere = {
+        ".git",
+        ".venv",
+        "venv",
+        "env",
+        "__pycache__",
         ".pytest_cache",
         ".mypy_cache",
     }
@@ -71,7 +77,10 @@ def main() -> int:
     # never be treated as publishable project content.
     for path in ROOT.rglob("*"):
         relative = path.relative_to(ROOT)
-        if any(part in generated_directories for part in relative.parts[:-1]):
+        parent_parts = relative.parts[:-1]
+        if relative.parts and relative.parts[0] in root_generated_directories:
+            continue
+        if any(part in generated_directories_anywhere for part in parent_parts):
             continue
         if not path.is_file() or path.suffix.lower() not in text_suffixes:
             continue
